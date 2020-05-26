@@ -4,7 +4,7 @@ import logging
 import os
 from typing import Optional
 
-from flask import Flask
+from flask import Flask, render_template
 from flask_socketio import SocketIO
 from flask_socketio import send
 
@@ -50,6 +50,9 @@ def handle_press(command):
 	controller.run(command)
 	return "DONE `{}`".format(command)
 
+@app.route('/client')
+def client():
+	return render_template('client.html')
 
 async def _main():
 	logger.info("Starting")
